@@ -31,6 +31,7 @@ const Home = () => {
   }, []);
 
   const categories = data?.categories ?? [];
+  const products = data?.new_arrivals ?? [];
 
   return (
     <>
@@ -44,7 +45,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <NewArrials />
+      <NewArrials products={products} />
       <LatestNews />
       <SubscriptionSection />
     </>
