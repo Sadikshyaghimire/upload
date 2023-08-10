@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import HeroImage from "../../assets/images/hero.png";
 
 const Hero = () => {
@@ -12,7 +13,9 @@ const Hero = () => {
             At miralou we have turned traditional skin care ingredients lists on
             its head
           </p>
-          <button className="mt-12 bg-yellow-300 px-20 py-3">Buy Now</button>
+          <div className="mt-12">
+            <Link className="bg-yellow-300 px-20 py-3">Buy Now</Link>
+          </div>
         </div>
         <img
           src={HeroImage}

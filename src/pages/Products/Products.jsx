@@ -1,7 +1,5 @@
 const Prodcuts = () => {
-  return (
-    <div>Home</div>
-  )
-}
+  return <div>Products</div>;
+};
 
-export default Prodcuts
+export default Prodcuts;
