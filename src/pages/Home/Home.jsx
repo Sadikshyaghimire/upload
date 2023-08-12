@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
+import axios from '../../api/axios';
 import Hero from './Hero';
 import LatestNews from './LatestNews';
 import NewArrials from './NewArrivals';
@@ -21,7 +21,7 @@ const Home = () => {
 
   useEffect(function () {
     axios
-      .get('http://localhost:3001/api/v1/home/')
+      .get('/home')
       .then(function (response) {
         return response.data;
       })
