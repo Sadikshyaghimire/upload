@@ -39,8 +39,6 @@ const ProductDetail = () => {
     }
   };
 
-  console.log(product);
-
   return (
     <div>
       <div className='container mx-auto'>
