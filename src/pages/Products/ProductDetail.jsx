@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 import axios from '../../api/axios';
 import Button from '../../components/Button/Button';
 
-const ProductDetail = () => {
+const ProductDetail = ({ cart, setCart }) => {
   const [product, setProduct] = useState({});
   const { id } = useParams();
 
@@ -38,6 +38,32 @@ const ProductDetail = () => {
       setQuantity(quantity - 1);
     }
   };
+
+  const addToCart = () => {
+    const productExists = cart.find((item) => item.product.id === product.id);
+    if (!productExists) {
+      setCart([...cart, { product: product, quantity: quantity }]);
+    }
+  };
+
+  useEffect(() => {
+    const currentProduct = cart.find((item) => item.product.id === product.id);
+    if (currentProduct) {
+      setCart(
+        cart.map((item) => {
+          if (item.product.id === product.id) {
+            return {
+              ...item,
+              quantity: quantity,
+            };
+          }
+          return item;
+        })
+      );
+    }
+  }, [quantity]);
+
+  console.log(cart);
 
   return (
     <div>
@@ -74,7 +100,7 @@ const ProductDetail = () => {
                     <ChevronRightIcon className='w-4 h-4 text-gray-400' />
                   </button>
                 </div>
-                <Button>Add to Cart</Button>
+                <Button onClick={addToCart}>Add to Cart</Button>
               </div>
             </div>
 
