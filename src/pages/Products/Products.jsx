@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import axios from '../../api/axios';
 import ProductCard from '../../components/Product/Product';
 import { Sidebar } from './Sidebar';
@@ -6,6 +7,12 @@ import { Sidebar } from './Sidebar';
 const Prodcuts = () => {
   const [products, setProducts] = useState([]);
   const [selectedCategories, setSelected] = useState([]);
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const category = searchParams.getAll('category');
+    setSelected(category);
+  }, [searchParams]);
 
   useEffect(() => {
     let queryParams = '';

@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from '../../api/axios';
 
 export const Sidebar = ({ selectedCategories, setSelected }) => {
   const [categories, setCategories] = useState([]);
   const [searchParams] = useSearchParams();
-
-  // console.log(searchParams.get('category'));
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -22,15 +21,27 @@ export const Sidebar = ({ selectedCategories, setSelected }) => {
   const handleChange = (e) => {
     const { name, checked } = e.target;
     if (checked) {
-      setSelected([...selectedCategories, name]);
+      const category = searchParams.get('category', name);
+      if (category === null) {
+        searchParams.set('category', name);
+        const queryString = searchParams.toString();
+        navigate(`/products?${queryString}`);
+      } else {
+        searchParams.append('category', name);
+        const queryString = searchParams.toString();
+        navigate(`/products?${queryString}`);
+      }
     } else {
-      setSelected(
-        selectedCategories.filter((category) => {
-          if (category !== name) {
-            return category;
-          }
-        })
-      );
+      let category = searchParams.getAll('category');
+      searchParams.delete('category');
+      category = category.filter((cat) => cat !== name);
+
+      category.forEach((cat) => {
+        searchParams.append('category', cat);
+      });
+
+      const queryString = searchParams.toString();
+      navigate(`/products?${queryString}`);
     }
   };
 
