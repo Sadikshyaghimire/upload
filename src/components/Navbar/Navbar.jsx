@@ -4,9 +4,14 @@ import {
   ShoppingCartIcon,
 } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
+import { CartContext, useCart } from '../../context/cart';
+import { useContext } from 'react';
 
-const Navbar = ({ cart }) => {
+
+
+const Navbar = () => {
   const links = [
+
     {
       label: 'Home',
       to: '/',
@@ -28,6 +33,7 @@ const Navbar = ({ cart }) => {
       to: '/about',
     },
   ];
+  const{cart} =useCart;
 
   return (
     <header className='container mx-auto px-4 lg:px-0'>
