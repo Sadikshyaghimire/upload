@@ -33,7 +33,7 @@ const Navbar = () => {
       to: '/about',
     },
   ];
-  const{cart} =useCart;
+  const{cart} =useCart();
 
   return (
     <header className='container mx-auto px-4 lg:px-0'>

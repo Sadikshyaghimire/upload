@@ -14,7 +14,7 @@ const ProductDetail = () => {
   const [product, setProduct] = useState({});
   const { id } = useParams();
 
-  const { cart, setCart } = useCart;
+  const { cart, setCart, addToCart } = useCart;
 
   const [quantity, setQuantity] = useState(1);
 
@@ -42,12 +42,7 @@ const ProductDetail = () => {
     }
   };
 
-  const addToCart = () => {
-    const productExists = cart.find((item) => item.product.id === product.id);
-    if (!productExists) {
-      setCart([...cart, { product: product, quantity: quantity }]);
-    }
-  };
+const handleClick = () => {addToCart(product,quantity)}
 
   useEffect(() => {
     const currentProduct = cart.find((item) => item.product.id === product.id);
