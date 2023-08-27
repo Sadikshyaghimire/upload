@@ -63,8 +63,6 @@ const ProductDetail = ({ cart, setCart }) => {
     }
   }, [quantity]);
 
-  console.log(cart);
-
   return (
     <div>
       <div className='container mx-auto'>
